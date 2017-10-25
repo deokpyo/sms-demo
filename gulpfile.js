@@ -15,7 +15,7 @@ var path = require('path')
 gulp.task('css', function(){
     return gulp.src(
             [
-                './assets/css/bootstrap.css',
+                './assets/css/main.css',
             ]
         )
         .pipe(sourcemaps.init())
@@ -26,13 +26,32 @@ gulp.task('css', function(){
         .pipe(gulp.dest('./dist/css/'))
 })
 
-gulp.task('style', ['css'], function(){})
+gulp.task('copy-fonts', function(){
+    return gulp.src(
+            ['./assets/fonts/**']
+        )
+        .pipe(gulp.dest('./dist/fonts/'))
+})
+
+gulp.task('copy-css-images', function(){
+    return gulp.src(
+            ['./assets/css/images/**']
+        )
+        .pipe(gulp.dest('./dist/css/images/'))
+})
+
+gulp.task('style', ['css', 'copy-fonts', 'copy-css-images'], function(){})
 
 
 gulp.task('js', function(){
     return gulp.src(
             [
-                './assets/js/jquery.js',
+                './assets/js/jquery.min.js',
+                './assets/js/jquery.scrollex.min.js',
+                './assets/js/jquery.scrolly.min.js',
+                './assets/js/skel.min.js',
+                './assets/js/util.js',
+                './assets/js/main.js',
                 './assets/js/dropzone.js'
             ]
         )
@@ -66,22 +85,11 @@ gulp.task('copy-images', function(){
         .pipe(gulp.dest('./dist/images/'))
 })
 
-gulp.task('copy-readme', function(){
-    return gulp.src(
-            ['README.md']
-        )
-        .pipe(gulp.dest('./dist/'))
-})
-
-gulp.task('copy', ['copy-images', 'copy-readme'], function(){})
-
 // specify watch files here:
 gulp.task('watch', function() {
     gulp.watch(['./assets/js/**.js', './assets/css/**', './assets/less/**', './assets/images/**'], ['prod'])
 })
 
-gulp.task('prod', ['style', 'copy', 'js', 'app'], function(){})
-gulp.task('default', ['style', 'copy', 'js', 'app', 'watch'], function(){})
-
-
+gulp.task('prod', ['style', 'copy-images', 'js', 'app'], function(){})
+gulp.task('default', ['style', 'copy-images', 'js', 'app', 'watch'], function(){})
 
