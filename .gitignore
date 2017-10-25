@@ -2,3 +2,4 @@
 /dist/
 DOCUMENTATION.md
 .DS_Store
+.env

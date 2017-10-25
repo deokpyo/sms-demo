@@ -21,8 +21,8 @@ module.exports = {
 			return
 		}
 
-		var accountSid = 'AC9c49e2d49c7bd26497abc336ca973acf' // Your Account SID from www.twilio.com/console
-		var authToken = 'aade7e7b97256b6a63183907c461f3bd' // Your Auth Token from www.twilio.com/console
+		var accountSid = '' // Your Account SID from www.twilio.com/console
+		var authToken = '' // Your Auth Token from www.twilio.com/console
 
 		var twilio = require('twilio')
 		var client = new twilio(accountSid, authToken)
@@ -31,7 +31,7 @@ module.exports = {
 		client.messages.create({
 		    body: req.query.message,
 		    to: '+1'+req.query.to,  // Text this number
-		    from: '+16177444862' // From a valid Twilio number
+		    from: '' // From a valid Twilio number
 		})
 		.then((message) => {
 			payload = {
