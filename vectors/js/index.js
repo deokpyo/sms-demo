@@ -1,6 +1,7 @@
 // import npm packages here
 var superagent = require('superagent')
 var twilio = require('twilio')
+require('dotenv').config()
 
 // define your functions here:
 module.exports = {
@@ -21,8 +22,8 @@ module.exports = {
 			return
 		}
 
-		var accountSid = '' // Your Account SID from www.twilio.com/console
-		var authToken = '' // Your Auth Token from www.twilio.com/console
+		var accountSid = process.env.accountSid || '' // Your Account SID from www.twilio.com/console
+		var authToken = process.env.authToken || '' // Your Auth Token from www.twilio.com/console
 
 		var twilio = require('twilio')
 		var client = new twilio(accountSid, authToken)
@@ -31,7 +32,7 @@ module.exports = {
 		client.messages.create({
 		    body: req.query.message,
 		    to: '+1'+req.query.to,  // Text this number
-		    from: '' // From a valid Twilio number
+		    from: process.env.phoneNumber || '' // From a valid Twilio number
 		})
 		.then((message) => {
 			payload = {

@@ -9,6 +9,7 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "superagent": "^3.8.0",
     "turbo360": "latest",
     "twilio": "^3.9.0"
@@ -29,7 +30,8 @@
   "functions": {
     "turbo360": "latest",
     "superagent": "^3.8.0",
-    "twilio": "^3.9.0"
+    "twilio": "^3.9.0",
+    "dotenv": "^4.0.0"
   },
   "deploy": [
     "index.html",
